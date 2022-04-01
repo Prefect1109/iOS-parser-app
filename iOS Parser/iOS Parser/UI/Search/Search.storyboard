@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tql-so-PWl">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--NewsViewController-->
+        <scene sceneID="K7A-Zc-fVc">
+            <objects>
+                <viewController id="Tql-so-PWl" userLabel="NewsViewController" customClass="SearchViewController" customModule="iOS_Parser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CLb-1T-XMZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwn-Ss-Z9H">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="js6-Q2-dNY" customClass="HeaderView" customModule="iOS_Parser" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="131"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="131" id="AaF-u9-eHD"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSearchBarHidden" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fWK-yL-PVM">
+                                <rect key="frame" x="0.0" y="175" width="414" height="687"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <label key="tableHeaderView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123 News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wip-Ht-JtS">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ooi-2X-wWZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="js6-Q2-dNY" firstAttribute="leading" secondItem="Ooi-2X-wWZ" secondAttribute="leading" id="2oF-4S-Gyj"/>
+                            <constraint firstItem="lwn-Ss-Z9H" firstAttribute="top" secondItem="CLb-1T-XMZ" secondAttribute="top" id="3Ah-pF-c3t"/>
+                            <constraint firstItem="fWK-yL-PVM" firstAttribute="bottom" secondItem="Ooi-2X-wWZ" secondAttribute="bottom" id="Cx3-pS-SU9"/>
+                            <constraint firstItem="js6-Q2-dNY" firstAttribute="top" secondItem="Ooi-2X-wWZ" secondAttribute="top" id="DXe-I8-H2M"/>
+                            <constraint firstItem="fWK-yL-PVM" firstAttribute="top" secondItem="js6-Q2-dNY" secondAttribute="bottom" id="H2x-Tk-5Mb"/>
+                            <constraint firstAttribute="trailing" secondItem="lwn-Ss-Z9H" secondAttribute="trailing" id="WzU-gw-ttq"/>
+                            <constraint firstItem="Ooi-2X-wWZ" firstAttribute="trailing" secondItem="js6-Q2-dNY" secondAttribute="trailing" id="kwP-xn-MSM"/>
+                            <constraint firstItem="js6-Q2-dNY" firstAttribute="top" secondItem="lwn-Ss-Z9H" secondAttribute="bottom" id="nLU-Aq-XKR"/>
+                            <constraint firstItem="Ooi-2X-wWZ" firstAttribute="trailing" secondItem="fWK-yL-PVM" secondAttribute="trailing" id="w9n-YH-Uac"/>
+                            <constraint firstItem="lwn-Ss-Z9H" firstAttribute="leading" secondItem="CLb-1T-XMZ" secondAttribute="leading" id="wAo-rv-r73"/>
+                            <constraint firstItem="fWK-yL-PVM" firstAttribute="leading" secondItem="Ooi-2X-wWZ" secondAttribute="leading" id="wOu-if-IiA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="headerView" destination="js6-Q2-dNY" id="DGF-uA-1C1"/>
+                        <outlet property="safeAreaBackgroundView" destination="lwn-Ss-Z9H" id="Tpp-I8-Pxa"/>
+                        <outlet property="tableView" destination="fWK-yL-PVM" id="RX6-U8-K31"/>
+                        <outlet property="tableViewHeaderLabel" destination="Wip-Ht-JtS" id="FhA-Dt-yFM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vy2-nb-OFY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="823" y="126"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

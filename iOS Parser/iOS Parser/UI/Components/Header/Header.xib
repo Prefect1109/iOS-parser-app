@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="MuseoSansCyrl-900Italic.ttf">
+            <string>MuseoSansCyrl-900Italic</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderView" customModule="iOS_Parser" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="bFv-8E-us1" id="9n1-PZ-ue2"/>
+                <outlet property="filterButton" destination="rKY-c6-piO" id="usa-G3-Rcb"/>
+                <outlet property="logoLabel" destination="pJ0-cR-pqm" id="xTb-DW-tfc"/>
+                <outlet property="searchBarStackView" destination="4i0-wB-ao5" id="39D-4n-n4n"/>
+                <outlet property="searchTextField" destination="VGg-Tb-Bd0" id="YbZ-YM-bTj"/>
+                <outlet property="sortingButton" destination="4QV-Xr-Moc" id="yIM-Ge-0GW"/>
+                <outlet property="stackView" destination="WJb-iI-5tP" id="2XY-mf-0YM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="bFv-8E-us1">
+            <rect key="frame" x="0.0" y="0.0" width="418" height="134"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="WJb-iI-5tP">
+                    <rect key="frame" x="15" y="0.0" width="388" height="114"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJ0-cR-pqm">
+                            <rect key="frame" x="157.5" y="0.0" width="73.5" height="36"/>
+                            <fontDescription key="fontDescription" name="MuseoSansCyrl-900Italic" family="Museo Sans Cyrl" pointSize="30"/>
+                            <color key="textColor" name="sacoBlue"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4i0-wB-ao5">
+                            <rect key="frame" x="0.0" y="68" width="388" height="46"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VGg-Tb-Bd0" customClass="SearchTextField" customModule="iOS_Parser" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="264" height="46"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKY-c6-piO" customClass="CircleButton" customModule="iOS_Parser" customModuleProvider="target">
+                                    <rect key="frame" x="280" y="0.0" width="46" height="46"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="46" id="lpP-cA-9hJ"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="filter"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QV-Xr-Moc" customClass="CircleButton" customModule="iOS_Parser" customModuleProvider="target">
+                                    <rect key="frame" x="342" y="0.0" width="46" height="46"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="46" id="ioH-Sv-ZDI"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="sort"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="t4Z-Tv-adW"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="4i0-wB-ao5" firstAttribute="width" secondItem="WJb-iI-5tP" secondAttribute="width" id="hZZ-ww-e8h"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="WJb-iI-5tP" firstAttribute="leading" secondItem="bFv-8E-us1" secondAttribute="leading" constant="15" id="4RZ-6G-DOE"/>
+                <constraint firstItem="WJb-iI-5tP" firstAttribute="top" secondItem="bFv-8E-us1" secondAttribute="top" id="8Ng-od-7Kd"/>
+                <constraint firstItem="WJb-iI-5tP" firstAttribute="centerX" secondItem="bFv-8E-us1" secondAttribute="centerX" id="9SW-Um-c8q"/>
+                <constraint firstAttribute="trailing" secondItem="WJb-iI-5tP" secondAttribute="trailing" constant="15" id="r37-a1-CAV"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-107.24637681159422" y="255.13392857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="filter" width="16" height="19"/>
+        <image name="sort" width="20" height="14"/>
+        <namedColor name="sacoBlue">
+            <color red="0.9649999737739563" green="0.56099998950958252" blue="0.32899999618530273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

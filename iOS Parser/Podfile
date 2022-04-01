@@ -1,0 +1,13 @@
+platform :ios, '15.0'
+
+use_frameworks!
+
+target 'iOS Parser' do
+    pod 'IQKeyboardManagerSwift'
+    pod 'RxSwift'
+    pod 'RxDataSources', '~> 5.0'
+    pod 'SQLite.swift', '~> 0.12.0'
+    pod 'RxCocoa'
+    pod 'Moya'
+    pod 'R.swift'
+end
