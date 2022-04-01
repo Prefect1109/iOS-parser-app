@@ -75,8 +75,6 @@ class SearchHistoryManager {
         } catch {
             print(error.localizedDescription)
         }
-      
-        // return array
         return historyRecords
     }
 }

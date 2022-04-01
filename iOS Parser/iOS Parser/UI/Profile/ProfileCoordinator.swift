@@ -17,7 +17,5 @@ class ProfileCoordinator: Coordinator {
         navigationController = UINavigationController(rootViewController: viewController)
         navigationController.tabBarItem.title = "Profile"
         navigationController.tabBarItem.image = UIImage(systemName: "person")!
-//        let viewModel = HomeViewModel()
-//        viewController.configure(with: viewModel)
     }
 }

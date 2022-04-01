@@ -653,14 +653,41 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 3 images.
+  /// This `R.image` struct is generated, and contains static references to 6 images.
   struct image {
+    /// Image `backArrow`.
+    static let backArrow = Rswift.ImageResource(bundle: R.hostingBundle, name: "backArrow")
+    /// Image `bin`.
+    static let bin = Rswift.ImageResource(bundle: R.hostingBundle, name: "bin")
+    /// Image `calendar`.
+    static let calendar = Rswift.ImageResource(bundle: R.hostingBundle, name: "calendar")
     /// Image `dandruff`.
     static let dandruff = Rswift.ImageResource(bundle: R.hostingBundle, name: "dandruff")
     /// Image `filter`.
     static let filter = Rswift.ImageResource(bundle: R.hostingBundle, name: "filter")
     /// Image `sort`.
     static let sort = Rswift.ImageResource(bundle: R.hostingBundle, name: "sort")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "backArrow", bundle: ..., traitCollection: ...)`
+    static func backArrow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.backArrow, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "bin", bundle: ..., traitCollection: ...)`
+    static func bin(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.bin, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "calendar", bundle: ..., traitCollection: ...)`
+    static func calendar(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.calendar, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "dandruff", bundle: ..., traitCollection: ...)`
@@ -686,14 +713,24 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
+    /// Nib `DateTextFieldView`.
+    static let dateTextFieldView = _R.nib._DateTextFieldView()
     /// Nib `Header`.
     static let header = _R.nib._Header()
     /// Nib `NewsTableViewCell`.
     static let newsTableViewCell = _R.nib._NewsTableViewCell()
     /// Nib `SearchHistoryTableViewCell`.
     static let searchHistoryTableViewCell = _R.nib._SearchHistoryTableViewCell()
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "DateTextFieldView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.dateTextFieldView) instead")
+    static func dateTextFieldView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.dateTextFieldView)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "Header", in: bundle)`
@@ -718,6 +755,10 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.searchHistoryTableViewCell)
     }
     #endif
+
+    static func dateTextFieldView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.dateTextFieldView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
 
     static func header(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.header.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
@@ -770,7 +811,26 @@ struct _R: Rswift.Validatable {
   #if os(iOS) || os(tvOS)
   struct nib: Rswift.Validatable {
     static func validate() throws {
+      try _DateTextFieldView.validate()
       try _Header.validate()
+    }
+
+    struct _DateTextFieldView: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "DateTextFieldView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "calendar", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'calendar' is used in nib 'DateTextFieldView', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "sacoBlue", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'sacoBlue' is used in nib 'DateTextFieldView', but couldn't be loaded.") }
+        }
+      }
+
+      fileprivate init() {}
     }
 
     struct _Header: Rswift.NibResourceType, Rswift.Validatable {
@@ -877,7 +937,12 @@ struct _R: Rswift.Validatable {
       let name = "Filter"
 
       static func validate() throws {
+        if UIKit.UIImage(named: "backArrow", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'backArrow' is used in storyboard 'Filter', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "bin", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'bin' is used in storyboard 'Filter', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
+          if UIKit.UIColor(named: "backgroundGrey", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'backgroundGrey' is used in storyboard 'Filter', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "grey2", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'grey2' is used in storyboard 'Filter', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "sacoBlue", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'sacoBlue' is used in storyboard 'Filter', but couldn't be loaded.") }
         }
       }
 

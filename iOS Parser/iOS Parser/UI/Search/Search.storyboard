@@ -13,10 +13,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--NewsViewController-->
+        <!--SearchViewController-->
         <scene sceneID="K7A-Zc-fVc">
             <objects>
-                <viewController id="Tql-so-PWl" userLabel="NewsViewController" customClass="SearchViewController" customModule="iOS_Parser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Tql-so-PWl" userLabel="SearchViewController" customClass="SearchViewController" customModule="iOS_Parser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CLb-1T-XMZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +57,7 @@
                             <constraint firstItem="fWK-yL-PVM" firstAttribute="top" secondItem="js6-Q2-dNY" secondAttribute="bottom" id="H2x-Tk-5Mb"/>
                             <constraint firstAttribute="trailing" secondItem="lwn-Ss-Z9H" secondAttribute="trailing" id="WzU-gw-ttq"/>
                             <constraint firstItem="Ooi-2X-wWZ" firstAttribute="trailing" secondItem="js6-Q2-dNY" secondAttribute="trailing" id="kwP-xn-MSM"/>
-                            <constraint firstItem="js6-Q2-dNY" firstAttribute="top" secondItem="lwn-Ss-Z9H" secondAttribute="bottom" id="nLU-Aq-XKR"/>
+                            <constraint firstItem="js6-Q2-dNY" firstAttribute="top" secondItem="lwn-Ss-Z9H" secondAttribute="bottom" priority="999" id="nLU-Aq-XKR"/>
                             <constraint firstItem="Ooi-2X-wWZ" firstAttribute="trailing" secondItem="fWK-yL-PVM" secondAttribute="trailing" id="w9n-YH-Uac"/>
                             <constraint firstItem="lwn-Ss-Z9H" firstAttribute="leading" secondItem="CLb-1T-XMZ" secondAttribute="leading" id="wAo-rv-r73"/>
                             <constraint firstItem="fWK-yL-PVM" firstAttribute="leading" secondItem="Ooi-2X-wWZ" secondAttribute="leading" id="wOu-if-IiA"/>

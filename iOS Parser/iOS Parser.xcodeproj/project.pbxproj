@@ -53,6 +53,8 @@
 		FAB0837B27F67E270053C5B8 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0837A27F67E270053C5B8 /* FilterViewController.swift */; };
 		FAB0837D27F67E3C0053C5B8 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB0837C27F67E3C0053C5B8 /* Filter.storyboard */; };
 		FAB0837F27F67E670053C5B8 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0837E27F67E670053C5B8 /* FilterViewModel.swift */; };
+		FABD5B5027F700140059660E /* DateTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD5B4F27F700140059660E /* DateTextFieldView.swift */; };
+		FABD5B5227F7003A0059660E /* DateTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABD5B5127F7003A0059660E /* DateTextFieldView.xib */; };
 		FAF20BD727F30EE9000F1FE4 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF20BD627F30EE9000F1FE4 /* Article.swift */; };
 		FAF20BD927F32E2D000F1FE4 /* UIImageView+load.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF20BD827F32E2D000F1FE4 /* UIImageView+load.swift */; };
 		FAF20BDC27F33546000F1FE4 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF20BDB27F33546000F1FE4 /* ArticleViewController.swift */; };
@@ -132,6 +134,8 @@
 		FAB0837A27F67E270053C5B8 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		FAB0837C27F67E3C0053C5B8 /* Filter.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		FAB0837E27F67E670053C5B8 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		FABD5B4F27F700140059660E /* DateTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextFieldView.swift; sourceTree = "<group>"; };
+		FABD5B5127F7003A0059660E /* DateTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DateTextFieldView.xib; sourceTree = "<group>"; };
 		FAF20BD627F30EE9000F1FE4 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		FAF20BD827F32E2D000F1FE4 /* UIImageView+load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+load.swift"; sourceTree = "<group>"; };
 		FAF20BDB27F33546000F1FE4 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
@@ -394,6 +398,7 @@
 		FAB0836127F5C5150053C5B8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				FABD5B4C27F6FEC50059660E /* DateTextFieldView */,
 				FAAA69CD27EC8CF900EE7C3B /* TabBar */,
 				FA926CF727F1D5C200EB7988 /* Cells */,
 				FA967EE927F0B6300027CB6F /* Header */,
@@ -442,10 +447,19 @@
 			isa = PBXGroup;
 			children = (
 				FAB0837A27F67E270053C5B8 /* FilterViewController.swift */,
-				FAB0837C27F67E3C0053C5B8 /* Filter.storyboard */,
 				FAB0837E27F67E670053C5B8 /* FilterViewModel.swift */,
+				FAB0837C27F67E3C0053C5B8 /* Filter.storyboard */,
 			);
 			path = Filter;
+			sourceTree = "<group>";
+		};
+		FABD5B4C27F6FEC50059660E /* DateTextFieldView */ = {
+			isa = PBXGroup;
+			children = (
+				FABD5B4F27F700140059660E /* DateTextFieldView.swift */,
+				FABD5B5127F7003A0059660E /* DateTextFieldView.xib */,
+			);
+			path = DateTextFieldView;
 			sourceTree = "<group>";
 		};
 		FAF20BD527F30EDB000F1FE4 /* Models */ = {
@@ -585,6 +599,7 @@
 				FAF660F627F4408D00A969FC /* MuseoSansCyrl-500Italic.ttf in Resources */,
 				FAF6611227F440C600A969FC /* OpenSans-SemiBoldItalic.ttf in Resources */,
 				FAF660F827F4408D00A969FC /* MuseoSansCyrl-700Italic.ttf in Resources */,
+				FABD5B5227F7003A0059660E /* DateTextFieldView.xib in Resources */,
 				FAF6610C27F440C600A969FC /* OpenSans-Regular.ttf in Resources */,
 				FAF6611327F440C600A969FC /* OpenSans-Italic.ttf in Resources */,
 				FA967EC627F093310027CB6F /* Home.storyboard in Resources */,
@@ -696,6 +711,7 @@
 				FA5BEB5A27EBAF040095E1A1 /* R.generated.swift in Sources */,
 				FA967ECC27F094570027CB6F /* SearchViewController.swift in Sources */,
 				FA967EDC27F094DA0027CB6F /* MoreViewController.swift in Sources */,
+				FABD5B5027F700140059660E /* DateTextFieldView.swift in Sources */,
 				FA967ED227F0948F0027CB6F /* ProfileCoordinator.swift in Sources */,
 				FA5BEB5527EBA5C30095E1A1 /* NewsCoordinator.swift in Sources */,
 				FAB0837027F5EFA10053C5B8 /* NewsService.swift in Sources */,

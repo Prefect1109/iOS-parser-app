@@ -17,7 +17,5 @@ class HomeCoordinator: Coordinator {
         navigationController = UINavigationController(rootViewController: viewController)
         navigationController.tabBarItem.title = "Home"
         navigationController.tabBarItem.image = UIImage(systemName: "house")!
-//        let viewModel = HomeViewModel()
-//        viewController.configure(with: viewModel)
     }
 }

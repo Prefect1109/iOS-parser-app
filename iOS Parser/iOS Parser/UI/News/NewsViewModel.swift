@@ -31,7 +31,10 @@ class NewsViewModel {
     func transform(_ input: Input) -> Output {
         let newsServiceOuput = newsService.transform(.init(inputString: inputString.asObservable(),
                                                            featchMore: input.featchMore,
-                                                           refreshControlEvent: input.refreshControlEvent))
+                                                           refreshControlEvent: input.refreshControlEvent,
+                                                           dateFrom: .never(),
+                                                           dateTo: .never()))
+
         inputString.onNext("test")
         
         let newsDriver: Driver<[SearchTableViewSection]> = newsServiceOuput.articles

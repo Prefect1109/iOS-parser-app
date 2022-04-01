@@ -16,6 +16,14 @@ class SearchViewModel {
     private let items = PublishSubject<[SearchTableViewSection]>()
     private let historyRecords = PublishSubject<[String]>()
     
+    private let dateFromObservable: Observable<Date?>
+    private let dateToObservable: Observable<Date?>
+    
+    init(dateFromObservable: Observable<Date?>, dateToObservable: Observable<Date?>) {
+        self.dateFromObservable = dateFromObservable
+        self.dateToObservable = dateToObservable
+    }
+    
     struct Input {
         var inputString: Observable<String>
         var featchMore: Observable<Void>
@@ -30,11 +38,12 @@ class SearchViewModel {
         var refreshControlCompelted: Observable<Void>
     }
     
-    func transform(_ input: Input) -> Output {
-        
+    func transform(_ input: Input) -> Output {        
         let newsServiceOuput = newsService.transform(.init(inputString: input.inputString,
                                                            featchMore: input.featchMore,
-                                                           refreshControlEvent: input.refreshControlEvent))
+                                                           refreshControlEvent: input.refreshControlEvent,
+                                                           dateFrom: dateFromObservable.startWith(nil).debounce(.seconds(3), scheduler: MainScheduler.instance),
+                                                           dateTo: dateToObservable.startWith(nil).debounce(.seconds(3), scheduler: MainScheduler.instance)))
         
         input.inputString
             .subscribe(onNext: { string in

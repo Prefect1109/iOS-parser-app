@@ -39,6 +39,7 @@ class SearchViewController: UIViewController {
     private let fetchMore = PublishSubject<Void>()
     private let refreshControlAction = PublishSubject<Void>()
     private let inputString = PublishSubject<String>()
+    private var isViewAppired = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +47,17 @@ class SearchViewController: UIViewController {
         configureUI()
         bind()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
+        if isViewAppired {
+            fetchMore.onNext(())
+            inputString.onNext("test")
+            refreshControl.endRefreshing()
+            tableView.reloadData()
+        } else {
+            isViewAppired = true
+        }
     }
     
     func configure(viewModel: SearchViewModel,
@@ -61,6 +69,7 @@ class SearchViewController: UIViewController {
     }
     
     private func configureUI() {
+        self.navigationController?.navigationBar.isHidden = true
         view.clipsToBounds = true
         view.backgroundColor = R.color.backgroundGrey()
         view.bringSubviewToFront(headerView)
@@ -89,7 +98,7 @@ class SearchViewController: UIViewController {
             }).disposed(by: disposeBag)
         
         let output = viewModel.transform(.init(inputString: inputString.asObservable(),
-                                               featchMore: fetchMore.asObserver(),
+                                               featchMore: fetchMore.asObserver().startWith(()),
                                                refreshControlEvent: refreshControlAction.asObserver()))
         
         headerView.filterButton.rx.tap.subscribe(onNext: { self.showFilter?() })
@@ -120,6 +129,7 @@ class SearchViewController: UIViewController {
                 switch item {
                 case .searchHistory(let string):
                     self.inputString.onNext(string)
+                    self.tableViewHeaderLabel.rx.text.onNext("News")
                 case .news(let article):
                     self.openWebView(with: article.url)
                 }

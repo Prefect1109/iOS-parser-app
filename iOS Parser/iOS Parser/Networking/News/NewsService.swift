@@ -18,10 +18,11 @@ class NewsService {
     private var isPaginationRequestStillResume = false
     private var isRefreshRequstStillResume = false
     private var lastString = ""
+    private var lastDateFrom: Date? = nil
+    private var lastDateTo: Date? = nil
     
     private let items = BehaviorRelay<[Article]>(value: [])
     private let totalArticlesSubject = PublishSubject<Int>()
-    private let inputStringRelay = PublishRelay<String>()
     private let isLoadingSpinnerAvaliable = PublishSubject<Bool>()
     private let refreshControlCompelted = PublishSubject<Void>()
     
@@ -29,6 +30,8 @@ class NewsService {
         var inputString: Observable<String>
         var featchMore: Observable<Void>
         var refreshControlEvent: Observable<Void>
+        var dateFrom: Observable<Date?>
+        var dateTo: Observable<Date?>
     }
     
     struct Output {
@@ -40,17 +43,23 @@ class NewsService {
     
     func transform(_ input: Input) -> Output {
         
-        input.inputString
-            .bind(to: inputStringRelay)
-            .disposed(by: disposeBag)
-        
         let requestInput = Observable.combineLatest(input.featchMore.startWith(()),
-                                                    inputStringRelay.asObservable())
-        requestInput.subscribe { [weak self] _, inputString in
+                                                    input.inputString.debounce(.seconds(2),scheduler: MainScheduler.instance),
+                                                    input.dateFrom.startWith(nil),
+                                                    input.dateTo.startWith(nil))
+        input.inputString
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.refreshNewInput()
+            }).disposed(by: disposeBag)
+        
+        requestInput.subscribe { [weak self] _, inputString, dateFrom, dateTo in
             guard let self = self else { return }
             self.fetchData(page: self.pageCounter,
                            isRefreshControl: false,
-                           inputString: inputString)
+                           inputString: inputString,
+                           dateFrom: dateFrom,
+                           dateTo: dateTo)
         }.disposed(by: disposeBag)
         
         input.refreshControlEvent.subscribe { [weak self] _ in
@@ -63,7 +72,11 @@ class NewsService {
                      refreshControlCompelted: refreshControlCompelted.asObservable())
     }
     
-    private func fetchData(page: Int, isRefreshControl: Bool, inputString: String) {
+    private func fetchData(page: Int,
+                           isRefreshControl: Bool,
+                           inputString: String,
+                           dateFrom: Date?,
+                           dateTo: Date?) {
         if isPaginationRequestStillResume || isRefreshRequstStillResume { return }
         self.isRefreshRequstStillResume = isRefreshControl
         
@@ -80,9 +93,13 @@ class NewsService {
         }
         
         lastString = inputString // for refresh event
+        lastDateFrom = dateFrom
+        lastDateTo = dateTo
         let target = NewsTarget(input: inputString,
                                 page: pageCounter,
-                                max: pagesPerLoad)
+                                max: pagesPerLoad,
+                                dateFrom: dateFrom,
+                                dateTo: dateTo)
         
         let responseSingle: Single<NewsResponse> = NetworkingService.shared.createSingle(target: target)
         
@@ -124,6 +141,15 @@ class NewsService {
         items.accept([])
         fetchData(page: pageCounter,
                   isRefreshControl: true,
-                  inputString: lastString)
+                  inputString: lastString,
+                  dateFrom: lastDateFrom,
+                  dateTo: lastDateTo)
+    }
+    
+    private func refreshNewInput() {
+        NetworkingService.shared.cancelRequests()
+        isPaginationRequestStillResume = false
+        pageCounter = 1
+        items.accept([])
     }
 }

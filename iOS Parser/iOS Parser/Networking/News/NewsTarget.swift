@@ -28,10 +28,15 @@ class NewsTarget: TargetType {
 
         
     public var task: Task
-    private let apiKey = "7775dcab2034e29fb8924262de15c7ef"
-    
-    init(input: String, page: Int, max: Int) {
-        let parameters = ["q": input, "token": apiKey, "page": page, "max": max] as [String: Any]
+    private let apiKey = "53356b84c5810f900ae1ca29241c5014"
+
+    init(input: String, page: Int, max: Int, dateFrom: Date? = nil, dateTo: Date? = nil) {
+        let parameters = ["q": input,
+                          "token": apiKey,
+                          "page": page,
+                          "max": max,
+                          "from": dateFrom ?? "",
+                          "to": dateTo ?? ""] as [String: Any]
         task = .requestParameters(parameters: parameters, encoding: URLEncoding.default)
     }
 }

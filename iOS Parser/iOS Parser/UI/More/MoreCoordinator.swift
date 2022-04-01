@@ -17,7 +17,5 @@ class MoreCoordinator: Coordinator {
         navigationController = UINavigationController(rootViewController: viewController)
         navigationController.tabBarItem.title = "More"
         navigationController.tabBarItem.image = UIImage(systemName: "ellipsis.circle.fill")!
-//        let viewModel = HomeViewModel()
-//        viewController.configure(with: viewModel)
     }
 }
