@@ -11,12 +11,6 @@ import RxCocoa
 import Darwin
 
 class NewsViewModel: ViewModelType {
-    
-    private let newsService = NewsService()
-    private let disposeBag = DisposeBag()
-    private let inputString = PublishSubject<String>()
-    private let items = PublishSubject<[SearchTableViewSection]>()
-    
     struct Input {
         var featchMore: Observable<Void>
         var refreshControlEvent: Observable<Void>
@@ -26,6 +20,18 @@ class NewsViewModel: ViewModelType {
         var items: Driver<[SearchTableViewSection]>
         var isLoadingSpinnerAvaliable: Observable<Bool>
         var refreshControlCompelted: Observable<Void>
+    }
+    
+    struct Dependencies {}
+    
+    private let newsService = NewsService()
+    private let disposeBag = DisposeBag()
+    private let inputString = PublishSubject<String>()
+    private let items = PublishSubject<[SearchTableViewSection]>()
+    private let dependencies: Dependencies
+    
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
     }
     
     func transform(_ input: Input) -> Output {

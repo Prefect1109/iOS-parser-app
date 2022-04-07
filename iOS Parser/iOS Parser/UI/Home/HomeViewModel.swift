@@ -8,6 +8,7 @@
 class HomeViewModel: ViewModelType {
     struct Input {}
     struct Output {}
+    struct Dependencies {}
     
     func transform(_ input: Input) -> Output {
         return .init()

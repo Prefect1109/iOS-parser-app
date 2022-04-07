@@ -17,7 +17,7 @@ class NewsCoordinator: Coordinator {
         navigationController = UINavigationController(rootViewController: viewController)
         navigationController.tabBarItem.title = "News"
         navigationController.tabBarItem.image = UIImage(systemName: "circle.grid.2x2")!
-        let viewModel = NewsViewModel()
+        let viewModel = NewsViewModel(dependencies: .init())
         viewController.configure(viewModel: viewModel,
                                  showArticle: showArticle)
     }

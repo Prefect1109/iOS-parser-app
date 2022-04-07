@@ -5,4 +5,12 @@
 //  Created by Prefect on 27.03.2022.
 //
 
-import Foundation
+class ProfileViewModel: ViewModelType {
+    struct Input {}
+    struct Output {}
+    struct Dependencies {}
+    
+    func transform(_ input: Input) -> Output {
+        return .init()
+    }
+}

@@ -22,8 +22,8 @@ class SearchCoordinator: Coordinator {
         navigationController.tabBarItem.title = "Search"
         navigationController.tabBarItem.image = UIImage(systemName: "magnifyingglass")!
         
-        let viewModel = SearchViewModel(dateFromObservable: dateFromSubject.asObservable(),
-                                        dateToObservable: dateToSubject.asObservable())
+        let viewModel = SearchViewModel(dependencies: .init(dateFromObservable: dateFromSubject.asObservable(),
+                                                            dateToObservable: dateToSubject.asObservable()))
         viewController.configure(viewModel: viewModel, showArticle: showArticle, showFilter: showFilter)
     }
     

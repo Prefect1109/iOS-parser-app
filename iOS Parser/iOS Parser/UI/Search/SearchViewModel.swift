@@ -9,21 +9,6 @@ import RxSwift
 import RxCocoa
 
 class SearchViewModel: ViewModelType {
-    
-    private let disposeBag = DisposeBag()
-    private let newsService = NewsService()
-    private let tableHeaderValue = BehaviorSubject<String>(value: "Search History")
-    private let items = PublishSubject<[SearchTableViewSection]>()
-    private let historyRecords = PublishSubject<[String]>()
-    
-    private let dateFromObservable: Observable<Date?>
-    private let dateToObservable: Observable<Date?>
-    
-    init(dateFromObservable: Observable<Date?>, dateToObservable: Observable<Date?>) {
-        self.dateFromObservable = dateFromObservable
-        self.dateToObservable = dateToObservable
-    }
-    
     struct Input {
         var inputString: Observable<String>
         var featchMore: Observable<Void>
@@ -38,12 +23,30 @@ class SearchViewModel: ViewModelType {
         var refreshControlCompelted: Observable<Void>
     }
     
+    struct Dependencies {
+        var dateFromObservable: Observable<Date?>
+        var dateToObservable: Observable<Date?>
+    }
+    
+    private let disposeBag = DisposeBag()
+    private let newsService = NewsService()
+    private let tableHeaderValue = BehaviorSubject<String>(value: "Search History")
+    private let items = PublishSubject<[SearchTableViewSection]>()
+    private let historyRecords = PublishSubject<[String]>()
+    private let dependencies: Dependencies
+    
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
+    }
+    
     func transform(_ input: Input) -> Output {
         let input: NewsService.Input = .init(inputString: input.inputString,
-                                                 featchMore: input.featchMore,
-                                                 refreshControlEvent: input.refreshControlEvent,
-                                                 dateFrom: dateFromObservable.startWith(nil).debounce(.seconds(3), scheduler: MainScheduler.instance),
-                                                 dateTo: dateToObservable.startWith(nil).debounce(.seconds(3), scheduler: MainScheduler.instance))
+                                             featchMore: input.featchMore,
+                                             refreshControlEvent: input.refreshControlEvent,
+                                             dateFrom: dependencies.dateFromObservable.startWith(nil).debounce(.seconds(3),
+                                                                                                               scheduler: MainScheduler.instance),
+                                             dateTo: dependencies.dateToObservable.startWith(nil).debounce(.seconds(3),
+                                                                                                           scheduler: MainScheduler.instance))
         let newsServiceOuput = newsService.transform(input)
         
         input.inputString
@@ -76,8 +79,8 @@ class SearchViewModel: ViewModelType {
         newsServiceOuput.totalArticals.map { totalArticles -> String in
             return "\(totalArticles) News"
         }.asDriver(onErrorDriveWith: .never())
-        .drive(tableHeaderValue)
-        .disposed(by: disposeBag)
+            .drive(tableHeaderValue)
+            .disposed(by: disposeBag)
         
         let newsDriver: Driver<[SearchTableViewSection]> = newsServiceOuput.articles
             .asDriver(onErrorDriveWith: .never())

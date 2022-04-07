@@ -5,7 +5,6 @@
 //  Created by Prefect on 27.03.2022.
 //
 
-import UIKit
 import RxSwift
 
 class SearchViewController: UIViewController {
@@ -39,25 +38,12 @@ class SearchViewController: UIViewController {
     private let fetchMore = PublishSubject<Void>()
     private let refreshControlAction = PublishSubject<Void>()
     private let inputString = PublishSubject<String>()
-    private var isViewAppired = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = R.color.backgroundGrey()
         configureUI()
         bind()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if isViewAppired {
-            fetchMore.onNext(())
-            inputString.onNext("test")
-            refreshControl.endRefreshing()
-            tableView.reloadData()
-        } else {
-            isViewAppired = true
-        }
     }
     
     func configure(viewModel: SearchViewModel,
