@@ -8,7 +8,7 @@
 import RxSwift
 import RxCocoa
 
-class SearchViewModel {
+class SearchViewModel: ViewModelType {
     
     private let disposeBag = DisposeBag()
     private let newsService = NewsService()
@@ -38,12 +38,13 @@ class SearchViewModel {
         var refreshControlCompelted: Observable<Void>
     }
     
-    func transform(_ input: Input) -> Output {        
-        let newsServiceOuput = newsService.transform(.init(inputString: input.inputString,
-                                                           featchMore: input.featchMore,
-                                                           refreshControlEvent: input.refreshControlEvent,
-                                                           dateFrom: dateFromObservable.startWith(nil).debounce(.seconds(3), scheduler: MainScheduler.instance),
-                                                           dateTo: dateToObservable.startWith(nil).debounce(.seconds(3), scheduler: MainScheduler.instance)))
+    func transform(_ input: Input) -> Output {
+        let input: NewsService.Input = .init(inputString: input.inputString,
+                                                 featchMore: input.featchMore,
+                                                 refreshControlEvent: input.refreshControlEvent,
+                                                 dateFrom: dateFromObservable.startWith(nil).debounce(.seconds(3), scheduler: MainScheduler.instance),
+                                                 dateTo: dateToObservable.startWith(nil).debounce(.seconds(3), scheduler: MainScheduler.instance))
+        let newsServiceOuput = newsService.transform(input)
         
         input.inputString
             .subscribe(onNext: { string in

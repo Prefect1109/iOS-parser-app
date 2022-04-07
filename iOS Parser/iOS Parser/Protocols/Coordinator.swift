@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Moya
 
 protocol Coordinator {
     var navigationController: UINavigationController { get set }

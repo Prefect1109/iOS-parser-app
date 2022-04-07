@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+class MoreViewModel: ViewModelType {
+    struct Input {}
+    struct Output {}
+    
+    func transform(_ input: Input) -> Output {
+        return .init()
+    }
+}

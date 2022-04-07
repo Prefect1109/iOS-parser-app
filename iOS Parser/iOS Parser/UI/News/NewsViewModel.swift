@@ -10,7 +10,7 @@ import Moya
 import RxCocoa
 import Darwin
 
-class NewsViewModel {
+class NewsViewModel: ViewModelType {
     
     private let newsService = NewsService()
     private let disposeBag = DisposeBag()
